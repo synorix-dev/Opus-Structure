@@ -3,9 +3,6 @@ const { Kazagumo } = require('kazagumo');
 const { Connectors } = require('shoukaku');
 const SpotifyPlugin = require('kazagumo-spotify');
 const config = require('./config');
-require('./application.js');
-require('./support.js');
-require('./mon.js');
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildPresences, GatewayIntentBits.DirectMessages],
    partials: [Partials.Channel, Partials.Message]
