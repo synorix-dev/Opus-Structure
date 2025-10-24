@@ -7,12 +7,9 @@
 
 const mongoose = require('mongoose');
 
-const WarnSchema = new mongoose.Schema({
+const PrefixSchema = new mongoose.Schema({
   guildId: String,
-  userId: String,
-  moderatorId: String,
-  reason: String,
-  date: Number,
+  prefix: String,
 });
 
-module.exports = mongoose.model('Warn', WarnSchema);
+module.exports = mongoose.model('Prefix', PrefixSchema);

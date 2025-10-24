@@ -1,13 +1,22 @@
+/**
+ * Opus Structure v1.6
+ * Copyright (c) 2025 SYNORIX
+ * Licensed under the Opus Structure License v1.6
+ * Free to use and modify — Commercial use prohibited.
+ */
+
 const { EmbedBuilder } = require('discord.js');
 const cooldown = require('../../utils/cooldown');
 const { permissionCheck } = require('../../utils/permissions');
+const Prefix = require('../../schemas/prefix');
 const NoPrefixUser = require('../../schemas/noprefix');
 
 module.exports = (client) => {
   client.on('messageCreate', async (message) => {
     if (!message.guild || message.author.bot) return;
 
-    const prefix = client.config.prefix;
+    const prefixData = await Prefix.findOne({ guildId: message.guild.id });
+    const prefix = prefixData ? prefixData.prefix : client.config.prefix;
   const content = message.content.trim();
   const botMention = `<@${client.user.id}>`;
   const botMentionNick = `<@!${client.user.id}>`;
@@ -36,19 +45,10 @@ module.exports = (client) => {
     const cmd = client.commands.get(name);
     if (!cmd) return;
 
-    const embedColor = client.config.embed_color || '#00FF66';
+    const embedColor = client.config.color || '#00FF66';
     if (cmd.cat === 'music' && client.config.music !== true) {
       return;
     }
-   if (!cmd.cat === 'music' && message.guild.id !== '1425011586854031373') {
-       const g = client.guilds.cache.get('1425011586854031373');
-      const e = new EmbedBuilder()
-      .setTitle('⚠️ You cant use this command')
-      .setDescription(`This command can be only used in ${g.name}`)
-      .setColor(client.config.color)
-      .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
-      return message.reply({ embeds: [e], allowedMentions: { repliedUser: false } });
-   }
 
     if (cmd.inVc && !message.member.voice.channel) {
       const embed = new EmbedBuilder()

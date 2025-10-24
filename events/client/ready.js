@@ -1,3 +1,10 @@
+/**
+ * Opus Structure v1.6
+ * Copyright (c) 2025 SYNORIX
+ * Licensed under the Opus Structure License v1.6
+ * Free to use and modify — Commercial use prohibited.
+ */
+
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 
@@ -22,8 +29,6 @@ module.exports = async (client) => {
       console.log(`${chalk.gray('⚙️')} ${chalk.bold('Configuration')}`);
       console.log(`${chalk.white('› Private Mode:')} ${client.config.private ? chalk.green('Enabled') : chalk.red('Disabled')}`);
       console.log(`${chalk.white('› Music System:')} ${client.config.music ? chalk.green('Enabled') : chalk.red('Disabled')}`);
-      console.log(`${chalk.white('› Activity:')} ${chalk.green(activity.name)}`);
-      console.log(`${chalk.white('› Activity Type:')} ${chalk.green(activity.type)}\n`);
 
       mongoose.set('strictQuery', true);
       await mongoose.connect(client.config.databaseURL, {

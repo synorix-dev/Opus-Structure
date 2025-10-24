@@ -2,9 +2,9 @@
   "name": "Prozix",
   "version": "2.5",
   "description": "",
-  "main": "src/shard.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/shard.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "synorix.dev",
